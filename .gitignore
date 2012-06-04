@@ -1,0 +1,34 @@
+# Reference
+# https://github.com/github/gitignore
+# http://shanesbrain.net/2008/7/9/using-xcode-with-git
+
+# Xcode
+build/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+*.moved-aside
+
+# from shanesbrain ref
+# old skool
+.svn
+
+# osx noise
+.DS_Store
+*.swp
+
+# xcode noise
+*.nib
+
+# Ignore tags created by etags and ctags
+TAGS
+tags
