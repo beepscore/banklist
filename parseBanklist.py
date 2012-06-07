@@ -41,7 +41,7 @@ for entry in data:
     # Parse values
     vals = mysplit(entry.strip())
     # Convert dates to sqlite3 standard format
-    # close_date
+    # closing_date
     vals[5] = datetime.strptime(vals[5], "%d-%b-%y")
     # updated_date
     vals[6] = datetime.strptime(vals[6], "%d-%b-%y")
@@ -53,3 +53,25 @@ for entry in data:
 
 # Done
 conn.commit()
+
+# Get failed banks by year, for fun
+c.execute("select strftime('%Y', closing_date), count(*) from failed_banks group by 1;")
+years = []
+failed_banks = []
+for row in c:
+    years.append(row[0])
+    failed_banks.append(row[1])
+ 
+# Plot the data, for fun
+import matplotlib.pyplot as plt
+import numpy.numarray as na
+ 
+values = tuple(failed_banks)
+ind = na.array(range(len(values))) + 0.5
+width = 0.35
+plt.bar(ind, values, width, color='r')
+plt.ylabel('Number of failed banks')
+plt.title('Failed banks by year')
+plt.xticks(ind+width/2, tuple(years))
+plt.show()
+
